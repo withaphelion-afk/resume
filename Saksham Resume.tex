@@ -9,6 +9,9 @@
 \usepackage{parskip}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
 
 % ── Colours ────────────────────────────────────────────────────────────────
 \definecolor{accent}{HTML}{000000}
@@ -39,6 +42,34 @@
   \hfill\textcolor{midgrey}{\textit{#3}}%
   \vspace{1pt}%
 }
+
+% company header + timeline sub-roles (two roles, one company)
+\newcommand{\company}[3]{%
+  \vspace{5pt}%
+  \textbf{#1}%
+  \hfill\textcolor{midgrey}{\textit{#2 $\cdot$ #3}}%
+  \par\nopagebreak\vspace{2pt}%
+}
+\definecolor{tldot}{HTML}{B3B3B3}
+\definecolor{tlline}{HTML}{E4E4E4}
+\newcounter{tl}
+\newcommand{\subrole}[3]{%
+  \stepcounter{tl}%
+  \vspace{3pt}%
+  \makebox[0pt][r]{\tikz[remember picture,baseline=-0.33em]{\node[circle,fill=tldot,inner sep=0pt,minimum size=4.6pt] (d\thetl) {};}\hspace{5.7pt}}%
+  \textbf{#1} \textnormal{\textcolor{midgrey}{--- #2}}%
+  \hfill\textcolor{midgrey}{\textit{#3}}%
+  \vspace{1pt}%
+}
+\newenvironment{timeline}
+  {\begin{list}{}{\setlength{\leftmargin}{11pt}\setlength{\rightmargin}{0pt}%
+     \setlength{\topsep}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}%
+     \setlength{\partopsep}{0pt}\setlength{\listparindent}{0pt}\setcounter{tl}{0}}\item[]}
+  {\end{list}%
+   \begin{tikzpicture}[remember picture,overlay]
+     \draw[line width=2.6pt,color=tlline]
+       ([yshift=-6.5pt]d1.south) -- ([yshift=6.5pt]d2.north);
+   \end{tikzpicture}}
 
 \newcommand{\project}[2][]{%
   \vspace{5pt}%
@@ -77,24 +108,28 @@ Bharati Vidyapeeth, Pune \hfill 2022 -- 2026
 % ── EXPERIENCE ─────────────────────────────────────────────────────────────
 \section{Experience}
 
-\role{Frontend Engineer}{Indxx}{Jun 2026 -- Present}
+\company{Indxx}{1 yr 5 mos}{Gurugram, Haryana, India}
+\begin{timeline}
+\subrole{Frontend Developer}{Full-time}{Jun 2026 -- Present}
 \begin{itemize}
   \item \textbf{ITICS 3.0 (Intelligence Systems):} Built the admin dashboard, navigation and analyst \textbf{Workbench} (segmentation, revenue mappings, metadata, accept/reject flows) in \textbf{React} and \textbf{Tailwind CSS}; role-based filters, server-side pagination and multi-parameter filtering for sectorial market analysis. Optimized dashboard performance by \textbf{50\%} via custom \textbf{Express.js} REST integrations.
-  \item Added analyst-specific Workbench controls: status filters (pending, in review, completed), SEDOL and ISIN columns in segment mappings, valid-from/valid-to metadata, and guarded page inputs that reject invalid values.
+  \item Added analyst-specific Workbench controls: status filters (pending, in review, completed), SEDOL and ISIN columns in segment mappings, valid-from/valid-to metadata, a pre-revenue/pre-IPO switch, add-row in segmentation, YoY date labels, and guarded page inputs that reject invalid values.
   \item \textbf{ITICS Website:} Migrated custom page transitions from the Next.js Pages Router to the \textbf{App Router} without regressions.
   \item \textbf{Indxx Website:} Built the customer \textbf{Next.js} site and contributed to admin web and factsheet; rebuilt the API whitelist to cover all live endpoints and documented them in a Bruno collection, keeping the customer site, admin web and factsheet consistent with the backend API.
   \item \textbf{cadmin 2.0:} Implemented Logs, Dashboard and job-status pages with validated ratio fields, searchable dropdowns, light/dark theming and a shared pagination utility across six pages; aligned golden-copy required/optional fields and column order, and fixed nested-table alignment.
-  \item \textbf{ICAL 4.0:} Implemented API integration, animations and indices-in-progress views with per-page controls, multi-client selection and Nasdaq-branded polish; hardened the app with a \textbf{Content-Security-Policy} and HTTP security headers generated from environment config.
+  \item \textbf{ICAL 5.0:} Implemented API integration, animations and indices-in-progress views with per-page controls, multi-client selection and Nasdaq-branded polish; rebuilt the security price validation page with filtering and export; hardened the app with a \textbf{Content-Security-Policy} and HTTP security headers generated from environment config.
   \item \textbf{Equity Quant:} Set up the application foundation and design system with \textbf{React}, \textbf{TypeScript}, Vite and shadcn/ui, giving the team reusable, accessible components and a consistent theme to build features on.
   \item \textbf{Client Delivery Platform:} Translated high-fidelity Figma prototypes into production React and Tailwind CSS, ensuring \textbf{100\%} design fidelity across audit workflows, including file repositories, QA checks and client-facing delivery states.
 \end{itemize}
 
-\role{Product Designer}{Indxx}{Jun 2025 -- Jun 2026}
+\subrole{Product \& Visual Designer}{Internship}{Jun 2025 -- Jun 2026}
 \begin{itemize}
-  \item \textbf{ICAL:} \textbf{Reduced analyst workflow time by 35\% by redesigning} the platform with role-based panels and automated audit trails.
+  \item \textbf{ICAL:} \textbf{Reduced analyst workflow time by 35\% by redesigning} the platform with role-based panels and automated audit trails, and prototyped the flows in Figma for engineering handoff.
   \item \textbf{cadmin:} Designed the admin console's flows, data tables and design system in Figma, then handed off to engineering.
+  \item Worked with analysts and engineers in design reviews, iterating on prototypes and component specs before build to keep handoff smooth.
   \item \textbf{Client Delivery Platform:} \textbf{Led design} of QA and logic checks for a high-stakes delivery system managing audit files, client repositories and sensitive documentation.
 \end{itemize}
+\end{timeline}
 
 \role{UX Designer}{EvenStar Media Pvt Ltd}{Apr 2025 -- June 2025}
 \begin{itemize}
