@@ -1,0 +1,161 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=0.5in,top=0.45in,right=0.5in,bottom=0.45in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ── Colours ────────────────────────────────────────────────────────────────
+\definecolor{accent}{HTML}{000000}
+\definecolor{midgrey}{HTML}{4B5563}
+
+% ── Layout ─────────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+% ── Section heading ────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\vspace{4pt}\bfseries\large\color{accent}}
+  {}{0em}{\MakeUppercase}
+  [\vspace{-2pt}\color{accent}\titlerule\vspace{4pt}]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+% ── Lists ──────────────────────────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1.2em, topsep=2pt, itemsep=1pt,
+  parsep=0pt, partopsep=0pt, label={\small\textbullet}
+}
+
+% ── Helpers ────────────────────────────────────────────────────────────────
+\newcommand{\role}[3]{%
+  \vspace{5pt}%
+  \textbf{#1} \textnormal{\textcolor{midgrey}{--- #2}}%
+  \hfill\textcolor{midgrey}{\textit{#3}}%
+  \vspace{1pt}%
+}
+
+\newcommand{\project}[2][]{%
+  \vspace{5pt}%
+  \textbf{#2}%
+  \ifx&#1&\else\hfill\textcolor{midgrey}{\textit{#1}}\fi%
+  \vspace{1pt}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+\begin{document}
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ── NAME & CONTACT ─────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{accent} SAKSHAM GAGNEJA}\\[4pt]
+  {\small\textcolor{midgrey}{Product Designer \ $\cdot$ \ Frontend Developer}}\\[3pt]
+  {\small
+    +91\,8178304447 \quad
+    \href{mailto:sakshamgagneja2015@gmail.com}{sakshamgagneja2015@gmail.com} \quad
+    \href{https://www.linkedin.com/in/saksham-gagneja-2665a124a}{LinkedIn} \quad
+    Delhi, India
+  }
+\end{center}
+
+\vspace{2pt}
+
+% ── PROFILE ────────────────────────────────────────────────────────────────
+\section{Profile}
+\textbf{Product Designer turned Frontend Developer.} I combine a strong 2-year foundation in \textbf{UI/UX Design} with a modern stack of \textbf{React, Next.js, and Tailwind CSS}. I specialize in building "design-engineered" products---ensuring that complex ideas become clean, functional, and pixel-perfect code.
+
+% ── EDUCATION ──────────────────────────────────────────────────────────────
+\section{Education}
+\textbf{B.Tech (Electronics and Communication Engineering)},
+Bharati Vidyapeeth, Pune \hfill 2022 -- 2026
+
+% ── SKILLS ─────────────────────────────────────────────────────────────────
+\section{Skills}
+\begin{tabularx}{\textwidth}{@{} >{\bfseries}l X @{}}
+Core Web    & HTML, CSS, JavaScript \ $\cdot$ \ \textbf{TypeScript (Proficient)} \\[2pt]
+Frontend    & \textbf{React, Express.js, Tailwind CSS}, Framer Motion \\[2pt]
+Testing     & \textit{Currently Learning:} Automated Testing (Jest, Cypress) \\[2pt]
+Design      & Figma, Design Systems, UX Research, Design Handoff \\[2pt]
+\end{tabularx}
+
+% ── EXPERIENCE ─────────────────────────────────────────────────────────────
+\section{Experience}
+
+\role{Product Designer \& Frontend Developer}{Indxx}{Jun 2025 -- Present}
+\begin{itemize}
+  \item \textbf{ICAL (Internal Tool):} \textbf{Reduced analyst workflow time by 35\% by redesigning} the ICAL platform with role-based panels and automated audit trails.
+  \item \textbf{Client Delivery Platform:} \textbf{Led design }for QA and logic checks for a high-stakes delivery system managing audit files, client repositories, and sensitive documentation.
+  \item \textbf{ITICS (Intelligence Systems):} Engineered data-heavy frontend modules using \textbf{React} and \textbf{Tailwind CSS}; optimized dashboard performance by \textbf{50\%} through custom REST API integrations using \textbf{Express.js}, server-side pagination, and complex multi-parameter filtering for sectorial market analysis.
+  \item \textbf{Platform Engineering:} Shipped admin and analyst UIs (cadmin, ICAL, ITICS Workbench) with job-status dashboards, validated forms and light/dark theming; hardened ICAL with a Content-Security-Policy and HTTP security headers generated from environment config; migrated ITICS marketing-site transitions from Next.js Pages Router to App Router.
+  \item \textbf{Tech Stack:} Leveraged React and Tailwind CSS to translate high-fidelity Figma prototypes into a production-ready Client Delivery Platform, ensuring \textbf{100\%} design fidelity across audit workflows.
+\end{itemize}
+
+\role{UX Designer}{EvenStar Media Pvt Ltd}{Apr 2025 -- June 2025}
+\begin{itemize}
+  \item Led end-to-end brand systems and digital campaign design for \textbf{10+ clients}
+        across industries.
+  \item Produced reusable component libraries and style guides, reducing design-to-handoff
+        time across client projects.
+\end{itemize}
+
+\role{Jr.\ Data Analyst}{Data Digitization Technology Pvt}{Aug 2022 -- Nov 2022}
+\begin{itemize}
+  \item Analysed medical sales data (Mankind, Cipla, Abbott) using Python \& Excel;
+        automated reporting dashboards that cut manual errors by \textbf{50\%}.
+  \item Identified high-performing regions and product lines, surfacing insights that
+        directly informed sales growth strategy.
+\end{itemize}
+
+% ── PROJECTS ───────────────────────────────────────────────────────────────
+\section{Projects}
+
+\project[React, Python, AWS S3/CloudFront, GitHub Actions]{Aphelion --- Social Video Publishing Platform}
+\begin{itemize}
+  \item Full-stack app to upload a video once and publish or schedule it to LinkedIn, with roles, approvals and per-post audit trails; verified against the live LinkedIn API. Deployed via Vercel, Render and an S3/CloudFront media pipeline with CI/CD.
+\end{itemize}
+
+\project[Python, React, GitHub Actions]{Orbit --- Systematic Trading Research Tool}
+\begin{itemize}
+  \item Built a self-learning RSI-divergence model with per-timeframe backtests, alerts and an installable web terminal; tested an astrology-based signal with multiple-testing correction (Romano--Wolf) and found no edge.
+\end{itemize}
+
+\project[MERN, PWA]{Dentiq \& Progress Tracker}
+\begin{itemize}
+  \item \textbf{Dentiq:} clinic CRM with WhatsApp template messaging (Graph API), session auto-logout and Vercel CI/CD. \textbf{Progress Tracker:} nested-timeline tracker with streaks, list-paste import and tests.
+\end{itemize}
+
+\project{rokda.com --- Forex \& Crypto Insights Platform}
+\begin{itemize}
+  \item Designed trader-focused user flows for analytics and emotional bias tracking;
+        introduced a data-UX system linking behaviour patterns to market bias decisions.
+  \item Tools: Figma, Notion
+\end{itemize}
+
+% ── EXTRA-CURRICULARS ──────────────────────────────────────────────────────
+\section{Extra-Curriculars}
+
+\role{Design Head}{CLIXZY Media Pvt Ltd}{Feb 2023 -- Feb 2025}
+\begin{itemize}
+  \item Managed event logistics and visual identity for Bhartiyam Fest; oversaw junior
+        designers and maintained brand consistency across all collateral.
+\end{itemize}
+
+\role{Creativity \& Design Coordinator}{ECSA, BVCOE}{Feb 2023 -- Feb 2024}
+\begin{itemize}
+  \item Directed inter-college branding and social campaigns; introduced design templates
+        and tracked CTR via Looker Studio SQL dashboards ---
+        boosting event registrations by \textbf{63\%}.
+\end{itemize}
+
+\role{Jr.\ Data Analyst}{Entrepreneurship \& Development Cell (EDC)}{Nov 2022 -- Feb 2023}
+\begin{itemize}
+  \item Consolidated datasets from campus ambassadors using Pandas ETL and SQL; built
+        dashboards visualising Tier\,1/2/3 performance and improved reporting time
+        by \textbf{50\%}.
+\end{itemize}
+\end{document}
