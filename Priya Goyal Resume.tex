@@ -1,97 +1,171 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[left=0.45in,top=0.35in,right=0.45in,bottom=0.35in]{geometry}
-\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage[left=0.5in,top=0.45in,right=0.5in,bottom=0.45in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
 \usepackage{enumitem}
-\usepackage{titlesec}
 \usepackage{microtype}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{fontspec}
+\setmainfont{lmroman10}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Ligatures=NoCommon]
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
-\pagestyle{empty}
+
+% ── Colours ────────────────────────────────────────────────────────────────
+\definecolor{accent}{HTML}{000000}
+\definecolor{midgrey}{HTML}{4B5563}
+
+% ── Layout ─────────────────────────────────────────────────────────────────
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\hyphenpenalty=10000 \exhyphenpenalty=10000
+\pagestyle{empty}
 
-\titleformat{\section}{\vspace{5pt}\bfseries\large}{}{0em}{\MakeUppercase}[\vspace{-3pt}\titlerule\vspace{3pt}]
-\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt}
+% ── Section heading ────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\vspace{4pt}\bfseries\large\color{accent}}
+  {}{0em}{\MakeUppercase}
+  [\vspace{-2pt}\color{accent}\titlerule\vspace{4pt}]
+\titlespacing{\section}{0pt}{8pt}{4pt}
 
-% \role{Company}{Dates}{Title}{Location}
-\newcommand{\role}[4]{\textbf{#1} \hfill #2 \\ \textit{#3} \hfill \textit{#4}\par}
+% ── Lists ──────────────────────────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1.2em, topsep=2pt, itemsep=1pt,
+  parsep=0pt, partopsep=0pt, label={\small\textbullet}
+}
 
+% ── Helpers ────────────────────────────────────────────────────────────────
+\newcommand{\role}[3]{%
+  \vspace{5pt}%
+  \textbf{#1} \textnormal{\textcolor{midgrey}{--- #2}}%
+  \hfill\textcolor{midgrey}{\textit{#3}}%
+  \vspace{1pt}%
+}
+
+% company header + timeline sub-roles (two roles, one company)
+\newcommand{\company}[3]{%
+  \vspace{5pt}%
+  \textbf{#1}%
+  \hfill\textcolor{midgrey}{\textit{#2 $\cdot$ #3}}%
+  \par\nopagebreak\vspace{2pt}%
+}
+\definecolor{tldot}{HTML}{B3B3B3}
+\definecolor{tlline}{HTML}{E4E4E4}
+\newcounter{tl}
+\newcommand{\subrole}[3]{%
+  \stepcounter{tl}%
+  \vspace{3pt}%
+  \makebox[0pt][r]{\tikz[remember picture,baseline=-0.33em]{\node[circle,fill=tldot,inner sep=0pt,minimum size=4.6pt] (d\thetl) {};}\hspace{5.7pt}}%
+  \textbf{#1} \textnormal{\textcolor{midgrey}{--- #2}}%
+  \hfill\textcolor{midgrey}{\textit{#3}}%
+  \vspace{1pt}%
+}
+\newenvironment{timeline}
+  {\begin{list}{}{\setlength{\leftmargin}{11pt}\setlength{\rightmargin}{0pt}%
+     \setlength{\topsep}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}%
+     \setlength{\partopsep}{0pt}\setlength{\listparindent}{0pt}\setcounter{tl}{0}}\item[]}
+  {\end{list}%
+   \begin{tikzpicture}[remember picture,overlay]
+     \draw[line width=2.6pt,color=tlline]
+       ([yshift=-6.5pt]d1.south) -- ([yshift=6.5pt]d2.north);
+   \end{tikzpicture}}
+
+\newcommand{\project}[2][]{%
+  \vspace{5pt}%
+  \textbf{#2}%
+  \ifx&#1&\else\hfill\textcolor{midgrey}{\textit{#1}}\fi%
+  \vspace{1pt}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
 \begin{document}
+% ═══════════════════════════════════════════════════════════════════════════
 
+% ── NAME & CONTACT ─────────────────────────────────────────────────────────
 \begin{center}
-  {\Huge\bfseries Priya Goyal}\\[3pt]
-  66, Krishan Kunj, Bank Enclave, New Delhi -- 110092\\
-  +91 9953108893 \,|\, \href{mailto:priyagoyaljio1234@gmail.com}{priyagoyaljio1234@gmail.com}
+  {\LARGE\bfseries\color{accent} PRIYA GOYAL}\\[4pt]
+  {\small\textcolor{midgrey}{Program \ $\cdot$ \ Brand Partnerships \ $\cdot$ \ Go-to-Market}}\\[3pt]
+  {\small
+    +91\,9953108893 \quad
+    \href{mailto:priyagoyaljio1234@gmail.com}{priyagoyaljio1234@gmail.com} \quad
+    New Delhi, India
+  }
 \end{center}
 
+\vspace{2pt}
+
+% ── PROFILE ────────────────────────────────────────────────────────────────
 \section{Profile}
-Market Expansion Associate with experience in campaign execution, brand operations, and affiliate marketing. Coordinates Community and Tech teams to take partner brands live, and has run campaigns for Cleartrip, Agoda, Lak\'{e}, and Vaseline.
+\textbf{Program and brand-partnerships professional} who builds go-to-market plans and launches partner brands, working across Community, Tech and creators. Onboarded \textbf{30k of 100k} creators and brands to the Meta $\times$ Flipkart $\times$ Wishlink affiliate program (\textbf{$\sim$30\% conversion}).
 
 \section{Skills}
-\begin{tabular}{@{}>{\bfseries}p{1.45in}p{5.6in}}
-Market Expansion & Brand Onboarding, Go-to-Market Execution, Affiliate Marketing, Campaign Operations, Brand Guidelines \\
-Program Management & Cross-functional Program Delivery, Roadmapping \& Prioritization, Timeline \& Dependency Management, Stakeholder Management, Process Improvement \\
-Product Management & Requirements Gathering, Product Specs \& User Flows, User Research, Agile Collaboration, Metrics \& KPI Tracking \\
-Tools & Lovable AI, Canva, SEO, Digital Marketing \\
-\end{tabular}
+\textbf{Brand Partnerships:} Partner Onboarding, Creator Ecosystem, Affiliate Marketing, Brand Guidelines, Stakeholder Management\\[1pt]
+\textbf{Program Management:} Cross-functional Program Delivery, Timeline \& Dependency Management, Roadmapping \& Prioritization, Data Analysis \& Reporting, Process Improvement\\[1pt]
+\textbf{Product \& GTM:} Go-to-Market Strategy, Requirements Gathering, Product Specs \& User Flows, User Research, Metrics \& KPI Tracking\\[1pt]
+\textbf{Tools:} Lovable AI, Canva, SEO, Digital Marketing
 
-\section{Work Experience}
-\role{Wishlink}{May 2026 -- Present}{Market Expansion Associate}{Gurgaon, India}
-\begin{itemize}
-\item Managed campaign execution for partner brands including \textbf{Cleartrip} and \textbf{Agoda}.
-\item Reviewed creator content for alignment with brand guidelines and campaign briefs.
-\item Selected campaign products, creator visibility, and reference reels based on campaign requirements.
-\item Coordinated with Community and Tech teams to ensure successful brand go-live and campaign execution.
-\item Built campaign landing pages using Lovable AI and supported campaign operations.
-\end{itemize}
-
-\role{Viral Pitch}{Dec 2025 -- May 2026}{Influencer Marketing Executive}{New Delhi, India}
-\begin{itemize}
-\item Executed campaigns for \textbf{Lak\'{e}}, \textbf{Vaseline}, \textbf{Pepsodent}, and \textbf{Artiscents}.
-\item Supported campaign execution, reporting, and market research.
-\end{itemize}
-
-\role{India News, Okhla}{Apr 2024 -- Aug 2024}{CG Operator (National PCR)}{}
-\begin{itemize}
-\item Operated CG systems for live news graphics, headlines, tickers, and breaking alerts.
-\item Ensured smooth visual transitions and synchronized graphics during national telecasts.
-\item Supported live broadcast production and real-time newsroom requirements.
-\end{itemize}
-
-\role{Total TV}{Jul 2023 -- Oct 2023}{Output Department Intern}{}
-\begin{itemize}
-\item Assisted in news bulletin production, script research, and content verification.
-\item Edited and prepared news packages for on-air broadcast.
-\item Developed infographics and visuals while ensuring factual accuracy and clarity.
-\end{itemize}
-
-\role{Sab Ki Awaaz}{May 2022 -- May 2023}{Content Writer}{}
-\begin{itemize}
-\item Covered political, social, and entertainment topics for the digital platform.
-\item Conducted interviews and background research to develop fact-based stories.
-\end{itemize}
-
-\section{Projects}
-\role{CraftScope.org}{}{Self-Initiated Project}{}
-\begin{itemize}
-\item Developed and launched CraftScope.org, an affiliate marketing platform with product recommendations and marketing insights.
-\item Applied SEO, audience targeting, content optimization, and funnel building.
-\end{itemize}
-
+% ── EDUCATION ──────────────────────────────────────────────────────────────
 \section{Education}
-\textbf{Digital Marketing using GenAI} \hfill 2025 \\
-Hansraj College, Delhi -- CraftScope.org, self-initiated project during course\\[3pt]
-\textbf{Bachelor of Journalism and Mass Communication} \hfill 2021 -- 2024 \\
-Jagannath University, Delhi -- Secured 2nd Position
+\textbf{Bachelor of Journalism and Mass Communication},
+Jagannath University, Delhi \hfill 2021 -- 2024\\
+\textbf{Digital Marketing using GenAI},
+Hansraj College, Delhi \hfill 2025
 
+% ── EXPERIENCE ─────────────────────────────────────────────────────────────
+\section{Experience}
+
+\role{Market Expansion Associate}{Wishlink}{May 2026 -- Present}
+\begin{itemize}
+  \item Created and led the go-to-market for the \textbf{travel} vertical, launching partner brands including \textbf{Cleartrip} and \textbf{Agoda}.
+  \item Onboarded \textbf{30k of 100k} creators and brands to the Meta $\times$ Flipkart $\times$ Wishlink affiliate program (\textbf{$\sim$30\% conversion}) and compared program data against actual onboarded numbers.
+  \item Led a team analysing PMM, measuring the impact of the notifications created.
+  \item Aligned Community and Tech teams on timelines and dependencies to take brands live.
+  \item Enforced brand guidelines across creator content and built landing pages with \textbf{Lovable AI}.
+\end{itemize}
+
+\role{Influencer Marketing Executive}{Viral Pitch}{Dec 2025 -- May 2026}
+\begin{itemize}
+  \item Managed creator partnerships for \textbf{Lak\'{e}}, \textbf{Vaseline}, \textbf{Pepsodent}, and \textbf{Artiscents}.
+  \item Supported brand-partner delivery, reporting, and market research.
+\end{itemize}
+
+\role{CG Operator (National PCR)}{India News, Okhla}{Apr 2024 -- Aug 2024}
+\begin{itemize}
+  \item Operated CG systems for live news graphics, headlines, tickers, and breaking alerts.
+  \item Ensured smooth visual transitions and synchronized graphics during national telecasts.
+  \item Supported live broadcast production and real-time newsroom requirements.
+\end{itemize}
+
+\role{Output Department Intern}{Total TV}{Jul 2023 -- Oct 2023}
+\begin{itemize}
+  \item Assisted in news bulletin production, script research, and content verification.
+  \item Edited and prepared news packages for on-air broadcast.
+  \item Developed infographics and visuals while ensuring factual accuracy and clarity.
+\end{itemize}
+
+% ── PROJECTS ───────────────────────────────────────────────────────────────
+\section{Projects}
+
+\project[Affiliate Marketing, SEO]{CraftScope.org --- Self-Initiated Project}
+\begin{itemize}
+  \item Developed and launched an affiliate marketing platform with product recommendations and marketing insights.
+  \item Applied SEO, audience targeting, content optimization, and funnel building.
+\end{itemize}
+
+\project[May 2022 -- May 2023]{Sab Ki Awaaz --- Content Writer}
+\begin{itemize}
+  \item Covered political, social, and entertainment topics for the digital platform.
+  \item Conducted interviews and background research to develop fact-based stories.
+\end{itemize}
+
+% ── ACHIEVEMENTS ───────────────────────────────────────────────────────────
 \section{Achievements}
 \begin{itemize}
-\item Secured 2nd rank in Mass Communication, Jagannath University (2021--2024).
-\item Performed key political roles (Ms. Atishi Marlena \& Mrs. Dimple Yadav) in mock press conferences.
-\item Interviewed Mr. Ashok Srivastava, Senior Anchor at DD News.
-\item Covered major events including MCD Elections and the G20 Jan Bhagidari campaign.
+  \item Secured \textbf{2nd rank} in Mass Communication, Jagannath University (2021--2024).
+  \item Performed key political roles (Ms. Atishi Marlena \& Mrs. Dimple Yadav) in mock press conferences.
+  \item Interviewed Mr. Ashok Srivastava, Senior Anchor at DD News.
+  \item Covered major events including MCD Elections and the G20 Jan Bhagidari campaign.
 \end{itemize}
-
 \end{document}
